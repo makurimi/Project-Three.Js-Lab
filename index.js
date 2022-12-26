@@ -36,6 +36,120 @@ const createSpot3 = () => {
     return spot3
 }
 
+function createTire1(){
+    const geometry = new THREE.TorusGeometry(5, 2.5, 16,100)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#3e444c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-70,-5,0)
+    mesh.rotation.y = Math.PI/2
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createTire2(){
+    const geometry = new THREE.TorusGeometry(5, 2.5, 16,100)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#3e444c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-65,-5,20)
+    mesh.rotation.y = Math.PI/2 + Math.PI / 9 * 1
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createTire3(){
+    const geometry = new THREE.TorusGeometry(5, 2.5, 16,100)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#3e444c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-65,-5,-20)
+    mesh.rotation.y = -Math.PI/2 + -Math.PI / 9 * 1
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createTire4(){
+    const geometry = new THREE.TorusGeometry(5, 2.5, 16,100)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#3e444c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-55,-5,40)
+    mesh.rotation.y = -Math.PI/2 + Math.PI / 9 * 2
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createTire5(){
+    const geometry = new THREE.TorusGeometry(5, 2.5, 16,100)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#3e444c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-55,-5,-40)
+    mesh.rotation.y = -Math.PI/2 + -Math.PI / 9 * 2
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createPole1(){
+    const geometry = new THREE.CylinderGeometry(1,1,50,16)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#646FD4"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(0,15,35)
+    mesh.rotation.x = -Math.PI/6
+    mesh.receiveShadow = true
+    scene.add(mesh)
+}
+
+function createPole2(){
+    const geometry = new THREE.CylinderGeometry(1,1,50,16)
+    const material = new THREE.MeshStandardMaterial({
+        color: "#646FD4"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(0,15,-35)
+    mesh.rotation.x = Math.PI/6
+    mesh.receiveShadow = true
+    scene.add(mesh)
+}
+
+function createBoxbutt(){
+    const geometry = new THREE.BoxGeometry(10,16.5,14.5)
+    const material = new THREE.MeshPhongMaterial({
+        color : "#848482"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-43,3,65)
+    mesh.rotation.y = -Math.PI/6
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
+function createButton(){
+    const geometry = new THREE.SphereGeometry(4.5,32,16)
+    const material = new THREE.MeshPhongMaterial({
+        color : "#dc143c"
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(-43,3,63)
+    mesh.receiveShadow = true
+    mesh.castShadow = true
+    scene.add(mesh)
+}
+
 function createPlane(){
     const geometry = new THREE.PlaneGeometry(1000,1000)
     const material = new THREE.MeshStandardMaterial({
@@ -144,6 +258,15 @@ function init(){
     createCrateA3()
     createCrateB1()
     createCrateB2()
+    createTire1()
+    createTire2()
+    createTire3()
+    createTire4()
+    createTire5()
+    createPole1()
+    createPole2()
+    createBoxbutt()
+    createButton()
 
     // scene.add(onload())
     scene.add(createAmbient())
