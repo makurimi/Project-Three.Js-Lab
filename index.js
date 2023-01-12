@@ -233,6 +233,47 @@ function createCrateB2(){
     mesh.castShadow= true
     scene.add(mesh)
 }
+let loader = new THREE.TextureLoader()
+function skybox(){
+    let right = loader.load('./assets/skybox/dawn_right.png')
+    let left = loader.load('./assets/skybox/dawn_left.png')
+    let top = loader.load('./assets/skybox/dawn_top.png')
+    let bottom = loader.load('./assets/skybox/dawn_bottom.png')
+    let front = loader.load('./assets/skybox/dawn_front.png')
+    let back = loader.load('./assets/skybox/dawn_back.png')
+
+    let boxMat = [
+        new THREE.MeshBasicMaterial({
+        map : right,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : left,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : top,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : bottom,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : front,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : back,
+        side : THREE.BackSide
+    })
+    ]
+
+    let boxGeo = new THREE.BoxGeometry(1000,1000,1000)
+
+    let boxMesh = new THREE.Mesh(boxGeo,boxMat)
+    scene.add(boxMesh)
+}
 
 function init(){
     scene = new THREE.Scene()
@@ -267,6 +308,7 @@ function init(){
     createPole2()
     createBoxbutt()
     createButton()
+    skybox()
 
     // scene.add(onload())
     scene.add(createAmbient())
