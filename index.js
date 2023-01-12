@@ -1,8 +1,41 @@
 import * as THREE from "./three.js/build/three.module.js"
-
+import {OrbitControls} from './three.js/examples/jsm/controls/OrbitControls.js'
 
 
 var scene, camera, renderer
+
+
+
+    let controls = new OrbitControls(camera,render.domElement)
+
+    let right = loader.load('./assets/skybox/dawn_right.png')
+    let left = loader.load('./assets/skybox/dawn_left.png')
+    let top = loader.load('./assets/skybox/dawn_top.png')
+    let bottom = loader.load('./assets/skybox/dawn_bottom.png')
+    
+    let boxMat = [
+        new THREE.MeshBasicMaterial({
+        map : right,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : left,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : top,
+        side : THREE.BackSide
+    }),
+        new THREE.MeshBasicMaterial({
+        map : bottom,
+        side : THREE.BackSide
+    }),
+]
+    let boxGeo = new THREE.BoxGeometry(1000,1000,1000)
+    let boxMesh = new THREE.Mesh(boxGeo,boxMat)
+    scene.add(boxMesh)
+
+
 
 const createTexture = () => {
     const loader = new THREE.TextureLoader()
@@ -251,6 +284,7 @@ function init(){
     })
     renderer.setSize(window.innerWidth, window.innerHeight)
     document.body.appendChild(renderer.domElement)
+    
 
     createPlane()
     createCrateA1()
@@ -267,8 +301,10 @@ function init(){
     createPole2()
     createBoxbutt()
     createButton()
+    
+    
 
-    // scene.add(onload())
+    //scene.add(onload())
     scene.add(createAmbient())
     scene.add(createSpot1())
     scene.add(createSpot2())
