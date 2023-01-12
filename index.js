@@ -170,7 +170,7 @@ function createBoxbutt(){
     mesh.castShadow = true
     scene.add(mesh)
 }
-
+//rasya pantek
 function createButton(){
     const geometry = new THREE.SphereGeometry(4.5,32,16)
     const material = new THREE.MeshPhongMaterial({
