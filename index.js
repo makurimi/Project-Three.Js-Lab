@@ -1,13 +1,10 @@
 import * as THREE from "./three.js/build/three.module.js"
-<<<<<<< Updated upstream
 import {FontLoader} from "./three.js/examples/jsm/loaders/FontLoader.js"
 import {TextGeometry} from "./three.js/examples/jsm/geometries/TextGeometry.js"
 import {GLTFLoader} from "./three.js/examples/jsm/loaders/GLTFLoader.js"
-
-=======
 import {TextGeometry} from "./three.js/examples/jsm/geometries/TextGeometry.js"
 import {FontLoader} from "./three.js/examples/jsm/loaders/FontLoader.js"
->>>>>>> Stashed changes
+
 
 var scene, camera, renderer
 
@@ -391,12 +388,10 @@ function init(){
     createBoxbutt()
     createButton()
     skybox()
-<<<<<<< Updated upstream
     clickme()
     balonUdara()
-=======
     createText()
->>>>>>> Stashed changes
+
 
     // scene.add(onload())
     scene.add(createAmbient())
