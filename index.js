@@ -1,8 +1,16 @@
 import * as THREE from "./three.js/build/three.module.js"
+<<<<<<< Updated upstream
 import {OrbitControls} from './three.js/examples/jsm/controls/OrbitControls.js'
+=======
+import {FontLoader} from "./three.js/examples/jsm/loaders/FontLoader.js"
+import {TextGeometry} from "./three.js/examples/jsm/geometries/TextGeometry.js"
+import {GLTFLoader} from "./three.js/examples/jsm/loaders/GLTFLoader.js"
+import {OrbitControls} from "./three.js/examples/jsm/controls/OrbitControls.js"
+
+>>>>>>> Stashed changes
 
 
-var scene, camera, renderer
+var scene, camera, renderer, currentCam, FreeCamera
 
 
 
@@ -278,6 +286,10 @@ function init(){
     camera = new THREE.PerspectiveCamera(FOV, ASPECT, NEAR, FAR)
     camera.position.set(-180, 30, 0)
     camera.lookAt(0, 30,0)
+    
+    FreeCamera = new THREE.PerspectiveCamera(50,ASPECT, 1, 5000)
+    FreeCamera.position.set(-200,50,0)
+    FreeCamera.lookAt(0,0,0)
 
     renderer = new THREE.WebGLRenderer({
         antialias: true
@@ -301,8 +313,20 @@ function init(){
     createPole2()
     createBoxbutt()
     createButton()
+<<<<<<< Updated upstream
     
     
+=======
+    skybox()
+    clickme()
+    balonUdara()
+    createText()
+
+    var button = createButton()
+    control = new OrbitControls(FreeCamera, renderer.domElement)
+    window.button = button
+    currentCam = FreeCamera
+>>>>>>> Stashed changes
 
     //scene.add(onload())
     scene.add(createAmbient())
@@ -312,10 +336,28 @@ function init(){
 }
 
 
+function moveCam(event){
+    let keyCode = event.keyCode
+    if (keyCode == 32) //spacebar
+    {
+        if (currentCam == FixedCamera) {
+            currentCam = FreeCamera
+            cancelAnimationFrame(animationFrame)
+        } else {
+            currentCam = FixedCamera
+        }
+    }
+}
+
+
+window.addEventListener('keydown', moveCam)
+
 function render(){
     requestAnimationFrame(render)
     renderer.render(scene, camera)
+    control.update()
 }
+
 
 window.onload = function(){
     init()
