@@ -145,7 +145,7 @@ function createPole1(){
     mesh.receiveShadow = true
     scene.add(mesh)
 }
-
+//yyyy
 function createPole2(){
     const geometry = new THREE.CylinderGeometry(1,1,50,16)
     const material = new THREE.MeshStandardMaterial({
