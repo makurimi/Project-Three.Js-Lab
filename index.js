@@ -1,5 +1,7 @@
 import * as THREE from "./three.js/build/three.module.js"
-
+import {FontLoader} from "./three.js/examples/jsm/loaders/FontLoader.js"
+import {TextGeometry} from "./three.js/examples/jsm/geometries/TextGeometry.js"
+import {GLTFLoader} from "./three.js/examples/jsm/loaders/GLTFLoader.js"
 
 
 var scene, camera, renderer
@@ -144,7 +146,7 @@ function createButton(){
         color : "#dc143c"
     })
     const mesh = new THREE.Mesh(geometry, material)
-    mesh.position.set(-43,3,63)
+    mesh.position.set(-46,3,63)
     mesh.receiveShadow = true
     mesh.castShadow = true
     scene.add(mesh)
@@ -274,6 +276,52 @@ function skybox(){
     let boxMesh = new THREE.Mesh(boxGeo,boxMat)
     scene.add(boxMesh)
 }
+function clickme() {
+    let loader = new FontLoader()
+    loader.load('./three.js/examples/fonts/helvetiker_bold.typeface.json',
+    function (font1){
+        let geometry = new TextGeometry('Click Me!',{
+            font:font1,
+            size:7,
+            height:9
+        })
+        let material = [
+            new THREE.MeshPhongMaterial({
+                color: "#FF5B00",
+                side: THREE.FrontSide
+            }),
+            new THREE.MeshPhongMaterial({
+                color: "#990000",
+                side: THREE.BackSide
+            })]
+        let mesh = new THREE.Mesh(geometry,material)
+        mesh.position.set(-35, 25, 50)
+        mesh.rotation.set(0, Math.PI*3 + 1, 0)
+        mesh.castShadow = true
+        mesh.receiveShadow = true
+        
+        scene.add(mesh)
+        return mesh
+    })
+}
+function balonUdara(){
+    let loader = new GLTFLoader()
+
+    loader.load('./assets/model/scene.gltf',
+    function(gltf) {
+        let model = gltf.scene
+        model.scale.setScalar(1/11)
+        model.position.y = 1
+        gltf.scene.traverse( function (node) {
+            if (node.isMesh || node.isLight) node.castShadow = true;
+            if (node.isMesh || node.isLight) node.receiveShadow = true;
+        });
+
+        // console.log(gltf)
+        scene.add(model)
+        return model
+    })
+}
 
 function init(){
     scene = new THREE.Scene()
@@ -309,6 +357,8 @@ function init(){
     createBoxbutt()
     createButton()
     skybox()
+    clickme()
+    balonUdara()
 
     // scene.add(onload())
     scene.add(createAmbient())
